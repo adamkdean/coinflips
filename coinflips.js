@@ -1,9 +1,11 @@
 $(function() {
-    var totalIterations = 100000000, // 100M
+    var totalIterations = 1000000, // 1M
         currentIteration = 0,
-        iterationProgress = 1000000,
+        iterationProgress = 100000,
         currentScore = 0,
         highScore = 0,
+        chance = 0,
+        probability = 0,
         roundStr = '',
         face;
 
@@ -22,7 +24,10 @@ $(function() {
         }
         while (face !== 'T');
 
-        roundStr += ' (' + currentScore + ')';
+        chance = Math.pow(0.5, currentScore);
+        probability = 1 / chance;
+
+        roundStr += ' (' + currentScore + ' times -- 1/' + probability + ' chance)';
         if (currentScore > highScore) {
             highScore = currentScore;
             log(roundStr, true);
