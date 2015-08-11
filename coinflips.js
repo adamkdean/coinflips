@@ -1,7 +1,7 @@
 $(function() {
-    var totalIterations = 25000000,
+    var totalIterations = 100000000, // 100M
         currentIteration = 0,
-        iterationProgress = 100000,
+        iterationProgress = 1000000,
         currentScore = 0,
         highScore = 0,
         roundStr = '',
