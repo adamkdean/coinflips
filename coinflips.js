@@ -1,17 +1,17 @@
 $(function() {
     var totalIterations = 25000000,
         currentIteration = 0,
-        iterationProgress = 1000,
+        iterationProgress = 100000,
         currentScore = 0,
         highScore = 0,
         roundStr = '',
         face;
 
-    log('Generating ' + totalIterations + ' coinflips...', true);
+    log('Generating ' + format(totalIterations) + ' coinflips...', true);
     log('---------------------------------------------------------------', true);
 
     for (currentIteration = 0; currentIteration < totalIterations; currentIteration++) {
-        roundStr = 'Attempt #' + currentIteration + ': ';
+        roundStr = 'Attempt #' + format(currentIteration) + ': ';
         currentScore = 0;
         do {
             face = flip();
@@ -29,15 +29,17 @@ $(function() {
         }
 
         if (currentIteration % iterationProgress == 0) {
-            console.log(currentIteration.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-                        ' of ',
-                        totalIterations.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            console.log(format(currentIteration), ' of ', format(totalIterations));
         }
     }
 
     log('---------------------------------------------------------------', true);
-    log('Highest score from ' + totalIterations + ' rounds is ' + highScore, true);
+    log('Highest score from ' + format(totalIterations) + ' rounds is ' + highScore, true);
 });
+
+function format(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 function flip() {
     var value = Math.floor((Math.random() * 2) + 1);
